@@ -1,0 +1,8 @@
+
+model-routes.yaml
+
+internal_files/
+local/
+
+__pycache__/
+*.pyc

@@ -1,0 +1,62 @@
+# model-router routes file. Copy to model-routes.yaml next to this file in the ROOT Hermes home
+# (<root>/plugins/model-router/) for every profile, or in one profile's own plugins/model-router/ for that
+# profile only. Fill in every route you keep and delete the rest: one incomplete route rejects the whole
+# file, and a rejected file turns routing off (delegate_task then works as usual).
+#
+# `use` (required) is shown to agents verbatim and is how they choose a route: one line, "what - when".
+# `provider` and `model` (required): a configured Hermes provider name and its model id. `auto`,
+#   `default` and empty are not accepted.
+# `reasoning` (optional): none, minimal, low, medium, high, xhigh, max, ultra. Leave it out to run
+#   at the provider's default level.
+# `max_turns` (optional): cap on tool-calling iterations for the worker.
+
+default: general         # route used when the agent names none
+timeout_seconds: 900     # per job
+max_parallel: 3          # routed jobs running at once on this profile
+
+routes:
+  quick:
+    use: Mechanical, low-stakes edits - formatting, renames, simple lookups.
+    provider: ''
+    model: ''
+    reasoning: low
+  explore:
+    use: Read-only mapping - find code, summarise files, merge notes or documents.
+    provider: ''
+    model: ''
+    reasoning: low
+  general:
+    use: Ordinary multi-step work when no other route fits.
+    provider: ''
+    model: ''
+  code:
+    use: Write, refactor or debug code across one or more files.
+    provider: ''
+    model: ''
+    reasoning: medium
+  research:
+    use: Web research - compare sources and collect evidence with citations.
+    provider: ''
+    model: ''
+  reasoning:
+    use: Hard analysis - root-cause investigations, trade-offs, difficult decisions.
+    provider: ''
+    model: ''
+    reasoning: high
+  architecture:
+    use: System design and planning - structure, sequencing, how work is split up.
+    provider: ''
+    model: ''
+    reasoning: high
+  review:
+    use: First adversarial review of a plan or code change.
+    provider: ''
+    model: ''
+  alternate-review:
+    use: Second, independent adversarial review from a different model family.
+    provider: ''
+    model: ''
+  final-gate:
+    use: Last check before approval - cross-check earlier reviews and give a verdict.
+    provider: ''
+    model: ''

@@ -1,0 +1,7 @@
+name: model-router
+version: 0.2.0
+description: "delegate_routed: delegate a task to an owner-defined route (label -> provider/model/reasoning). While enabled, delegate_task spawns are redirected here."
+provides_tools:
+  - delegate_routed
+provides_hooks:
+  - pre_tool_call
